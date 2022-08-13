@@ -4,7 +4,7 @@
 
 void exit_usage (char* msg) {
     if (msg != NULL) fprintf(stderr, "ERROR: %s\n", msg);
-    fprintf(stderr, "Usage: chunks [--help] [--delimiter <d> | --zero] <chunk size>.\n");
+    fprintf(stderr, "Usage: chunks [--help] [--delimiter <d> | --zero] <chunk size>\n");
     exit(1);
 }
 
