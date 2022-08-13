@@ -15,6 +15,14 @@ void main (int argc, char** argv) {
   int delimiter_already_set = 0;
   int chunk_size_already_set = 0;
 
+  // Do --help check first, so that help is shown even where unrecognized or
+  // erroneous flags occur
+  for (int arg_ii = 1; arg_ii < argc; arg_ii++) {
+    char* arg = argv[arg_ii];
+    if (0 == strcmp("-h", arg) || 0 == strcmp("--help", arg))
+      exit_usage(NULL);
+  }
+
   for (int arg_ii = 1; arg_ii < argc; arg_ii++) {
     char* arg = argv[arg_ii];
     if (0 == strcmp("-d", arg) || 0 == strcmp("--delimiter", arg)) {
@@ -34,7 +42,6 @@ void main (int argc, char** argv) {
       delimiter = NULL;
       delimiter_already_set = 1;
     } else if (0 == strcmp("-h", arg) || 0 == strcmp("--help", arg)) {
-      exit_usage(NULL);
     } else {
       if (chunk_size_already_set)
         exit_usage("Tried to set chunk size more than once.");
